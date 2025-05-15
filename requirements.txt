@@ -54,5 +54,9 @@ yt-dlp==2025.4.30
 git add requirements.txt
 git commit -m "Added gunicorn to requirements"
 git push origin main
-
+flask
 gunicorn
+openai
+whisper
+yt_dlp
+
