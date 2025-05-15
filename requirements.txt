@@ -1,20 +1,6 @@
 Flask==2.3.2
-openai==1.3.5
-yt-dlp==2024.4.9
-whisperx==3.1.1
-ffmpeg-python
-librosa
-pydub
-translate
-python-dotenv
-requests
-tqdm
-faster-whisper
-edge-tts
-gunicorn
-git+https://github.com/openai/whisper.git
-Flask==2.3.2
 gunicorn==21.2.0
 openai-whisper==20240409
-torch
+torch==2.0.1
+torchaudio==2.0.2
 
