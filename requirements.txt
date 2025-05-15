@@ -12,4 +12,5 @@ tqdm
 faster-whisper
 edge-tts
 gunicorn
+git+https://github.com/openai/whisper.git
 
