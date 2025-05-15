@@ -18,11 +18,29 @@ def index():
 
 @app.route('/process', methods=['POST'])
 def process():
-    url = request.form['url']
-    target_lang = request.form['language']
-    return f"You entered URL: {url} and selected language: {target_lang}"
+    url = request.form['youtube_url']
+    language = request.form['language']
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    app.run(debug=True, host='0.0.0.0', port=port)
+    # Log input
+    print(f"URL: {url}, Language: {language}")
+
+    try:
+        # Download audio using yt-dlp
+        ydl_opts = {
+            'format': 'bestaudio/best',
+            'outtmpl': 'downloads/audio.%(ext)s',
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '192',
+            }],
+        }
+
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.download([url])
+
+        return f"✅ Audio downloaded for {url} in MP3 format!"
+    
+    except Exception as e:
+        return f"❌ Error: {str(e)}"
 
