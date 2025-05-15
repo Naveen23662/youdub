@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouDub – YouTube Video Dubbing</title>
+</head>
+<body>
+    <h2>YouDub: Dub any YouTube video in your language</h2>
+    <form method="POST" action="/dub">
+        <label for="url">YouTube Video URL:</label><br>
+        <input type="text" name="url" style="width: 400px;"><br><br>
+
+        <label for="target_lang">Select Target Language:</label>
+        <select name="target_lang">
+            <option value="te">Telugu</option>
+            <option value="hi">Hindi</option>
+            <option value="ta">Tamil</option>
+            <option value="kn">Kannada</option>
+            <option value="bn">Bengali</option>
+        </select><br><br>
+
+        <input type="submit" value="Dub Now">
+    </form>
+</body>
+</html>
+

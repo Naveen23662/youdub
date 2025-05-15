@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dubbed Output</title>
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            font-family: Arial;
+            color: white;
+            text-align: center;
+        }
+        .fullscreen-video {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+        }
+        audio {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            z-index: 2;
+        }
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1db954;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 2;
+        }
+        .redub-form {
+            position: fixed;
+            bottom: 130px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+
+<!-- YouTube video fullscreen & muted -->
+<iframe class="fullscreen-video"
+        src="{{ youtube_url | replace('watch?v=', 'embed/') }}?autoplay=1&mute=1&rel=0"
+        frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+</iframe>
+
+<!-- Dubbed audio -->
+<audio autoplay controls>
+    <source src="{{ url_for('static', filename=audio_file.split('static/')[1]) }}" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<!-- Download button -->
+<a class="download-btn"
+   href="{{ url_for('static', filename=audio_file.split('static/')[1]) }}"
+   download>
+   ⬇ Download Dubbed Audio
+</a>
+
+<!-- Redub form -->
+<form class="redub-form" action="/translate" method="POST">
+    <input type="hidden" name="youtube_url" value="{{ youtube_url }}">
+    <label for="language">🔁 Redub in another language:</label>
+    <select name="language" required>
+        {% for name, code in languages.items() %}
+        <option value="{{ name }}">{{ name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" style="margin-left: 10px;">Redub</button>
+</form>
+
+</body>
+</html>
+

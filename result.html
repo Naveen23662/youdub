@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dubbed Output</title>
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+        }
+        .fullscreen-video {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+        }
+        audio {
+            position: fixed;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            z-index: 2;
+        }
+        .download-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1db954;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Fullscreen YouTube video -->
+<iframe class="fullscreen-video"
+        src="{{ youtube_url | replace('watch?v=', 'embed/') }}?autoplay=1&mute=1&rel=0"
+        frameborder="0"
+        allow="autoplay; fullscreen"
+        allowfullscreen></iframe>
+
+<!-- Dubbed audio playback -->
+<audio autoplay controls>
+    <source src="{{ url_for('static', filename=audio_file.split('static/')[1]) }}" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<!-- Download dubbed audio -->
+<a class="download-btn"
+   href="{{ url_for('static', filename=audio_file.split('static/')[1]) }}"
+   download>
+   ⬇ Download Dubbed Audio
+</a>
+
+</body>
+</html>
+
