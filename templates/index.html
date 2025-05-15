@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>YouDub</title>
 </head>
-<body style="text-align: center; font-family: Arial; padding: 40px;">
-    <h1>YouDub 🎙️</h1>
-    <p>Paste any YouTube link and dub it into your language.</p>
+<body>
+    <h1>YouDub</h1>
+    <form method="POST" action="/process">
+        <label for="url">YouTube URL:</label>
+        <input type="text" name="url" required><br><br>
 
-    <form action="/translate" method="POST">
-        <input type="text" name="youtube_url" placeholder="YouTube URL" style="width: 400px;" required><br><br>
         <label for="language">Select Language:</label>
         <select name="language" required>
-            {% for name, code in languages.items() %}
-            <option value="{{ name }}">{{ name }}</option>
+            {% for lang in languages %}
+                <option value="{{ lang }}">{{ lang }}</option>
             {% endfor %}
         </select><br><br>
-        <button type="submit">Dub Now</button>
+
+        <input type="submit" value="Dub it">
     </form>
 </body>
 </html>

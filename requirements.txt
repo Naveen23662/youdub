@@ -1,6 +1,7 @@
-flask==2.3.2
-openai==1.3.5
+Flask==2.3.2
+gunicorn==21.2.0
 yt-dlp==2024.4.9
+openai==1.3.5
 whisperx==3.1.1
 ffmpeg-python
 librosa
@@ -11,8 +12,6 @@ requests
 tqdm
 faster-whisper
 edge-tts
-gunicorn==21.2.0
-numpy
 torch
-git+https://github.com/openai/whisper.git
+numpy
 
